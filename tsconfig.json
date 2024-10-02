@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    "strict": true,
+    "moduleResolution": "node",
+    "outDir": "./MobbAutofixer/0.1.0",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["MobbAutofixer/0.1.0/task.ts"],
+  "exclude": ["node_modules","node_modules/@types/requirejs"]
+}

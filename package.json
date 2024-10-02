@@ -1,0 +1,25 @@
+{
+  "name": "Mobb-Autofixer",
+  "version": "1.0.0",
+  "description": "Mobb Autofixer ADO plugin",
+  "main": "MobbAutofixer/0.1.0/task.js",
+  "scripts": {
+    "build": "tsc --project .\\tsconfig.json && tsc --project .\\MobbAutofixer\\0.1.0\\dist\\tsconfig.json && npx ts-node increment-build.ts && npx webpack && tfx extension create --manifest-globs vss-extension.json --no-ignore false                                                               ",
+    "start": "node \\MobbAutofixer\\0.1.0\\task.js",
+    "test": "tsc .\\MobbAutofixer\\0.1.0\\task.ts && npx ts-node task-test.ts"
+  },
+  "dependencies": {
+    "azure-devops-extension-api": "1.157.0",
+    "azure-pipelines-task-lib": "4.10.1",
+    "tslib": "^2.7.0",
+    "url-parse": "^1.5.10"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "@types/url-parse": "^1.4.11",
+    "node-polyfill-webpack-plugin": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.2",
+    "webpack-cli": "^5.1.4"
+  }
+}

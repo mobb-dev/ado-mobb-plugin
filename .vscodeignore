@@ -1,0 +1,5 @@
+node_modules/.bin
+node_modules/**/*.bin
+node_modules/**/*.cmd
+node_modules/**/*.exe
+node_modules/**/*.sh

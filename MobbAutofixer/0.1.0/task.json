@@ -1,0 +1,68 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "d49b6d4a-9db5-465d-9770-e62b734e4a45",
+    "name": "MobbAutofixer",
+    "friendlyName": "Mobb Autofixer",
+    "description": "Runs Mobb SAST Autofixer",
+    "helpMarkDown": "Consumes SAST report to generate autofixes",
+    "category": "Utility",
+    "author": "Antony",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 54
+    },
+    "instanceNameFormat": "Run Mobb Autofixer Task",
+    "execution": {
+        "Node16": {
+            "target": "task.js"
+        },
+        "Node20_1": {
+            "target": "task.js"
+        }
+    },
+    "groups": [],
+    "inputs": [
+        {
+            "name": "MobbConnection",
+            "type": "connectedService:MobbServiceEndpoint",
+            "label": "Credentials",
+            "defaultValue": "",
+            "required": true,
+            "properties": {
+                "IsSearchable": "True"
+            },
+            "helpMarkDown": "<b>Credentials</b><p>Select the credentials to use for running an analysis. Add credentials using Mobb Connection Service Service. <a target=\"_blank\" href=\"https://help.com\"> How do I get my credentials?</a></p>"
+        },
+        {
+            "name": "SASTReportFileLocation",
+            "type": "string",
+            "label": "SAST Report File Location",
+            "required": true,
+            "helpMarkDown": "<b>Scan Name</b><p>An optional name for the scan. This name is used to differentiate results on the Build page.</p>"
+        },
+        {
+            "name": "RepositoryURI",
+            "type": "string",
+            "label": "Repository URL",
+            "required": false,
+            "helpMarkDown": "<b>Specify the Repository URL</b><p>If this is not specified, the value from BUILD_REPOSITORY_URI environment variable will be used.</p>"
+        },
+        {
+            "name": "BranchName",
+            "type": "string",
+            "label": "Branch Name",
+            "required": false,
+            "helpMarkDown": "<b>Specify the Branch Name</b><p>If this is not specified, the value from BUILD_SOURCEBRANCHNAME environment variable will be used.</p>"
+        },
+        {
+            "name": "repoFolderLocation",
+            "type": "string",
+            "label": "Repo Sub Folder Location",
+            "defaultValue": ".",
+            "required": false,
+            "helpMarkDown": "<b>Specify the Repository folder location</b><p>If this is not specified, the current working directory SYSTEM_DEFAULTWORKINGDIRECTORY will be used.</p>"
+        }
+    ],
+    "outputVariables": []
+}
