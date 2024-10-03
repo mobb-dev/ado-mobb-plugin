@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 54
+        "Patch": 56
     },
     "instanceNameFormat": "Run Mobb Autofixer Task",
     "execution": {
@@ -32,7 +32,7 @@
             "properties": {
                 "IsSearchable": "True"
             },
-            "helpMarkDown": "<b>Credentials</b><p>Select the credentials to use for running an analysis. Add credentials using Mobb Connection Service Service. <a target=\"_blank\" href=\"https://help.com\"> How do I get my credentials?</a></p>"
+            "helpMarkDown": "<b>Credentials</b><p>Select the credentials to use for running an analysis. Add credentials using Mobb Connection Service Service. <a target=\"_blank\" href=\"https://docs.mobb.ai/mobb-user-docs/ci-cd-integrations/azure-devops\"> How do I get my credentials?</a></p>"
         },
         {
             "name": "SASTReportFileLocation",
@@ -40,6 +40,13 @@
             "label": "SAST Report File Location",
             "required": true,
             "helpMarkDown": "<b>Scan Name</b><p>An optional name for the scan. This name is used to differentiate results on the Build page.</p>"
+        },
+        {
+            "name": "MobbProjectName",
+            "type": "string",
+            "label": "Mobb Project Name",
+            "required": false,
+            "helpMarkDown": "<b>Specify the Mobb Project Name</b><p>If this is not specified, the default project \"My first Project\" will be used.</p>"
         },
         {
             "name": "RepositoryURI",
