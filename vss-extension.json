@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "mobb-autofixer-task",
     "name": "Mobb Autofixer",
-    "version": "0.1.156",
+    "version": "0.1.157",
     "publisher": "Mobb",
     "scopes": [
         "vso.code",
@@ -15,6 +15,15 @@
         }
     ],
     "description": "Mobb Autofixer extension task for Azure Pipelines",
+    "links": {
+        "support": {
+          "uri": "https://docs.mobb.ai/mobb-user-docs/ci-cd-integrations/azure-devops"
+        },
+        "repository": {
+          "uri": "https://github.com/mobb-dev/ado-mobb-plugin/"
+        }
+    },
+    
     "categories": [
         "Azure Pipelines"
     ],

@@ -38,6 +38,7 @@ import * as path from 'path';
         const BranchName: string = tl.getInput('BranchName', false)|| ''; 
         const MobbProjectName: string = tl.getInput('MobbProjectName', false)|| ''; 
         let repoFolderLocation: string = tl.getInput('repoFolderLocation', false)|| ''; 
+        const autopr: boolean = tl.getBoolInput('autopr', false) || false; 
 
         //env vars
         let finalBranchname: string;
@@ -53,10 +54,11 @@ import * as path from 'path';
         console.debug('INPUT: BranchName is: '+BranchName);
         console.debug('INPUT: MobbProjectName is: '+MobbProjectName);
         console.debug('INPUT: repoFolderLocation is: '+repoFolderLocation);
+        console.debug('INPUT: autopr is: '+repoFolderLocation);
 
         // Log environment variables using Node.js built-in process.env
         //console.debug('Environment variables:');
-        console.debug(process.env);
+        //console.debug(process.env);
 
         // Execute platform-specific commands
         if (os.platform() === 'win32') {
@@ -109,13 +111,24 @@ import * as path from 'path';
       }
       console.log(`repoURI is: ${finalRepoURI}`);
 
-      // Check if BranchName is provided, if not, use BUILD_SOURCEBRANCHNAME or a default one
+      // Check if BranchName is provided, if not, use SYSTEM_PULLREQUEST_SOURCEBRANCH, BUILD_SOURCEBRANCHNAME or a default one
       if (BranchName) {
           finalBranchname = BranchName;
-      }else{
+      }else if (tl.getVariable('SYSTEM_PULLREQUEST_SOURCEBRANCH')){
+        console.log(`BranchName was not specified. SYSTEM_PULLREQUEST_SOURCEBRANCH found and will be used.`);
+        finalBranchname = tl.getVariable('SYSTEM_PULLREQUEST_SOURCEBRANCH') || '';
+  
+      }else if (tl.getVariable('BUILD_SOURCEBRANCHNAME')){
         finalBranchname = tl.getVariable('BUILD_SOURCEBRANCHNAME') || '';
         console.log(`BranchName was not specified. Using BUILD_SOURCEBRANCHNAME instead.`);
+
+      }else{
+        finalBranchname = 'no-branch';
+        console.log(`BranchName was not specified, setting it to 'no-branch'.`);
       }
+
+      finalBranchname = finalBranchname.startsWith("refs/heads/") ? finalBranchname.substring("refs/heads/".length) : finalBranchname;
+
       console.log(`finalBranchname is: ${finalBranchname}`);
 
       // Check if repoFolderLocation is empty, if it is, then just add .
@@ -127,6 +140,9 @@ import * as path from 'path';
 
         if(MobbProjectName){
           mobbExecString = mobbExecString + ` --mobb-project-name "${MobbProjectName}"`;
+        }
+        if(autopr){
+          mobbExecString = mobbExecString + ` --auto-pr`;
         }
 
         console.log(`Mobb Exec String: ${mobbExecString}`);

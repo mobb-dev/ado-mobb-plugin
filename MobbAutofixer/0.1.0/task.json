@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 56
+        "Patch": 57
     },
     "instanceNameFormat": "Run Mobb Autofixer Task",
     "execution": {
@@ -60,7 +60,7 @@
             "type": "string",
             "label": "Branch Name",
             "required": false,
-            "helpMarkDown": "<b>Specify the Branch Name</b><p>If this is not specified, the value from BUILD_SOURCEBRANCHNAME environment variable will be used.</p>"
+            "helpMarkDown": "<b>Specify the Branch Name</b><p>If this is not specified, the value from SYSTEM_PULLREQUEST_SOURCEBRANCH (priority), or BUILD_SOURCEBRANCHNAME will be used.</p>"
         },
         {
             "name": "repoFolderLocation",
@@ -69,6 +69,14 @@
             "defaultValue": ".",
             "required": false,
             "helpMarkDown": "<b>Specify the Repository folder location</b><p>If this is not specified, the current working directory SYSTEM_DEFAULTWORKINGDIRECTORY will be used.</p>"
+        },
+        {
+            "name": "autopr",
+            "type": "boolean",
+            "label": "Automatic PR",
+            "defaultValue": false,
+            "required": false,
+            "helpMarkDown": "<b>Specify whether Automatic Pull Request is enabled.</p>  <a href='https://docs.mobb.ai/mobb-user-docs/administration/fix-policy#automatic-pr' target='_blank'>Click here to learn more.</a>"
         }
     ],
     "outputVariables": []
