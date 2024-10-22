@@ -75,7 +75,7 @@ async function run() {
         console.debug('INPUT: BranchName is: ' + BranchName);
         console.debug('INPUT: MobbProjectName is: ' + MobbProjectName);
         console.debug('INPUT: repoFolderLocation is: ' + repoFolderLocation);
-        console.debug('INPUT: autopr is: ' + autopr);
+        console.debug('INPUT: autopr is: ' + repoFolderLocation);
         // Log environment variables using Node.js built-in process.env
         //console.debug('Environment variables:');
         //console.debug(process.env);

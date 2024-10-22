@@ -10,11 +10,14 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 67
+        "Patch": 59
     },
     "instanceNameFormat": "Run Mobb Autofixer Task",
     "execution": {
         "Node16": {
+            "target": "task.js"
+        },
+        "Node20_1": {
             "target": "task.js"
         }
     },

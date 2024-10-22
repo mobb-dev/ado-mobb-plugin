@@ -55,7 +55,7 @@ import axios from 'axios';
         console.debug('INPUT: BranchName is: '+BranchName);
         console.debug('INPUT: MobbProjectName is: '+MobbProjectName);
         console.debug('INPUT: repoFolderLocation is: '+repoFolderLocation);
-        console.debug('INPUT: autopr is: '+autopr);
+        console.debug('INPUT: autopr is: '+repoFolderLocation);
 
         // Log environment variables using Node.js built-in process.env
         //console.debug('Environment variables:');
@@ -92,7 +92,7 @@ import axios from 'axios';
       if (hostname !== 'app.mobb.ai') {
         // Set environment variables for custom Mobb URL
         
-        // Checking if the API_URL is of the format "api-st-HOSTNAME" or "api-HOSTNAME"
+        // Checking if the API_URL is api-st-NAME or api-NAME
         const primaryUrl = `https://api-${hostname}/v1/graphql`;
         const secondaryUrl = `https://api-st-${hostname}/v1/graphql`;
         try {
@@ -165,7 +165,7 @@ import axios from 'axios';
         }
 
         console.log(`Mobb Exec String: ${mobbExecString}`);
-
+        
         let output = execSync(mobbExecString,{ encoding: 'utf-8' });
         output = output.trim();
         console.log('Mobb link output:', output);

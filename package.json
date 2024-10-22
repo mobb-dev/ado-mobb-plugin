@@ -9,6 +9,7 @@
     "test": "tsc .\\MobbAutofixer\\0.1.0\\task.ts && npx ts-node task-test.ts"
   },
   "dependencies": {
+    "axios": "^1.7.7",
     "azure-devops-extension-api": "1.157.0",
     "azure-pipelines-task-lib": "4.10.1",
     "dotenv": "^16.4.5",

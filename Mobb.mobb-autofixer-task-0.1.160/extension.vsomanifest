@@ -1,55 +1,9 @@
 {
     "manifestVersion": 1,
-    "id": "mobb-autofixer-task",
-    "name": "Mobb Autofixer",
-    "version": "0.1.168",
-    "publisher": "Mobb",
     "scopes": [
         "vso.code",
         "vso.build"
     ],
-    "public": true,
-    "targets": [
-        {
-            "id": "Microsoft.VisualStudio.Services"
-        }
-    ],
-    "description": "Mobb Autofixer extension task for Azure Pipelines",
-    "links": {
-        "support": {
-            "uri": "https://docs.mobb.ai/mobb-user-docs/ci-cd-integrations/azure-devops"
-        },
-        "getstarted": {
-            "uri": "https://docs.mobb.ai/mobb-user-docs/getting-started/onboarding-guide/registering-a-mobb-account"
-        },
-        "repository": {
-            "uri": "https://github.com/mobb-dev/ado-mobb-plugin"
-        }
-    },
-    "repository": {
-        "type": "git",
-        "uri": "https://github.com/mobb-dev/ado-mobb-plugin"
-    },
-    "categories": [
-        "Azure Pipelines"
-    ],
-    "icons": {
-        "default": "images/mobb-logo-black_128x128.png"
-    },
-    "files": [
-        {
-            "path": "MobbAutofixer",
-            "addressable": true
-        }
-    ],
-    "content": {
-        "details": {
-            "path": "overview.md"
-        },
-        "license": {
-            "path": "license.md"
-        }
-    },
     "contributions": [
         {
             "id": "mobb-autofixer",
@@ -89,8 +43,8 @@
                         "inputDescriptors": [
                             {
                                 "id": "apitoken",
-                                "name": "i18n:API Token",
-                                "description": "i18n:API Token for connection to endpoint",
+                                "name": "API Token",
+                                "description": "API Token for connection to endpoint",
                                 "inputMode": "textbox",
                                 "isConfidential": true,
                                 "validation": {
@@ -120,5 +74,6 @@
                 ]
             }
         }
-    ]
+    ],
+    "contributionTypes": []
 }
