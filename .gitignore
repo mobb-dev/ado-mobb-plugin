@@ -1,8 +1,6 @@
 *.vsix
 **/node_modules
 node_modules/
-task-test.ts
-task-test.js
 package-lock.json
 local-test.ts
 archive/

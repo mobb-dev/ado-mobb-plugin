@@ -1,16 +1,16 @@
 {
     "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
-    "id": "d49b6d4a-9db5-465d-9770-e62b734e4a45",
-    "name": "MobbAutofixer",
-    "friendlyName": "Mobb Autofixer",
-    "description": "Runs Mobb SAST Autofixer",
+    "id": "2f13ed74-0b6b-43ce-94bd-aa4fe6b4c559",
+    "name": "MobbAutofixer-preview",
+    "friendlyName": "Mobb Autofixer Preview",
+    "description": "Runs Mobb SAST Autofixer - Preview",
     "helpMarkDown": "Consumes SAST report to generate autofixes. For more information, see the documentation: https://docs.mobb.ai/mobb-user-docs/ci-cd-integrations/azure-devops",
     "category": "Utility",
     "author": "Antony",
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 201
+        "Patch": 199
     },
     "instanceNameFormat": "Run Mobb Autofixer Task",
     "execution": {
@@ -22,7 +22,7 @@
     "inputs": [
         {
             "name": "MobbConnection",
-            "type": "connectedService:MobbServiceEndpoint",
+            "type": "connectedService:MobbServiceEndpoint-Preview",
             "label": "Credentials",
             "defaultValue": "",
             "required": true,
