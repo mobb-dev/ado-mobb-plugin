@@ -1,9 +1,74 @@
 {
     "manifestVersion": 1,
+    "id": "mobb-autofixer-task-preview",
+    "name": "Mobb Autofixer Preview",
+    "version": "0.1.195",
+    "publisher": "AntonyChiu",
     "scopes": [
         "vso.code",
         "vso.build"
     ],
+    "public": false,
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "description": "Mobb Autofixer extension task for Azure Pipelines",
+    "links": {
+        "support": {
+            "uri": "https://docs.mobb.ai/mobb-user-docs/ci-cd-integrations/azure-devops"
+        },
+        "getstarted": {
+            "uri": "https://docs.mobb.ai/mobb-user-docs/getting-started/onboarding-guide/registering-a-mobb-account"
+        },
+        "repository": {
+            "uri": "https://github.com/mobb-dev/ado-mobb-plugin"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/mobb-dev/ado-mobb-plugin"
+    },
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "images/mobb-logo-black_128x128.png"
+    },
+    "files": [
+        {
+            "path": "MobbAutofixer/0.1.0/task.js",
+            "addressable": true
+        },
+        {
+            "path": "MobbAutofixer/0.1.0/task.json",
+            "addressable": true
+        },
+        {
+            "path": "MobbAutofixer/0.1.0/task.bundle.js",
+            "addressable": true
+        },
+        {
+            "path": "MobbAutofixer/0.1.0/icon.png",
+            "addressable": true
+        },
+        {
+            "path": "MobbAutofixer/0.1.0/dist",
+            "addressable": true
+        },
+        {
+            "path": "MobbAutofixer"
+        }
+    ],
+    "content": {
+        "details": {
+            "path": "overview.md"
+        },
+        "license": {
+            "path": "license.md"
+        }
+    },
     "contributions": [
         {
             "id": "mobb-autofixer",
@@ -17,14 +82,14 @@
         },
         {
             "id": "service-endpoint",
-            "description": "Service Endpoint type for all Mobb connections",
+            "description": "Service Endpoint type for all Mobb connections - preview",
             "type": "ms.vss-endpoint.service-endpoint-type",
             "targets": [
                 "ms.vss-endpoint.endpoint-types"
             ],
             "properties": {
-                "name": "MobbServiceEndpoint",
-                "displayName": "Mobb Autofixer Endpoint",
+                "name": "MobbServiceEndpoint-Preview",
+                "displayName": "Mobb Autofixer Endpoint Preview",
                 "url": {
                     "displayName": "Server URL",
                     "value": "https://app.mobb.ai",
@@ -43,8 +108,8 @@
                         "inputDescriptors": [
                             {
                                 "id": "apitoken",
-                                "name": "API Token",
-                                "description": "API Token for connection to endpoint",
+                                "name": "i18n:API Token",
+                                "description": "i18n:API Token for connection to endpoint",
                                 "inputMode": "textbox",
                                 "isConfidential": true,
                                 "validation": {
@@ -70,10 +135,9 @@
                 "name": "Mobb",
                 "uri": "MobbAutofixer/0.1.0/dist/mobb.html",
                 "supportsTasks": [
-                    "d49b6d4a-9db5-465d-9770-e62b734e4a45"
+                    "2f13ed74-0b6b-43ce-94bd-aa4fe6b4c559"
                 ]
             }
         }
-    ],
-    "contributionTypes": []
+    ]
 }

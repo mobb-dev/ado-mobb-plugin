@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "mobb-autofixer-task",
     "name": "Mobb Autofixer",
-    "version": "0.1.168",
+    "version": "0.1.201",
     "publisher": "Mobb",
     "scopes": [
         "vso.code",
@@ -38,8 +38,27 @@
     },
     "files": [
         {
-            "path": "MobbAutofixer",
+            "path": "MobbAutofixer/0.1.0/task.js",
             "addressable": true
+        },
+        {
+            "path": "MobbAutofixer/0.1.0/task.json",
+            "addressable": true
+        },
+        {
+            "path": "MobbAutofixer/0.1.0/task.bundle.js",
+            "addressable": true
+        },
+        {
+            "path": "MobbAutofixer/0.1.0/icon.png",
+            "addressable": true
+        },
+        {
+            "path": "MobbAutofixer/0.1.0/dist",
+            "addressable": true
+        },
+        {
+            "path": "MobbAutofixer"
         }
     ],
     "content": {

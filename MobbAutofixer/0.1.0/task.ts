@@ -24,7 +24,46 @@ import axios from 'axios';
       });
     });
   };
-  
+
+  async function postCommentOnPullRequest(prComment: string): Promise<void> {
+    try {
+        const prId = tl.getVariable('SYSTEM_PULLREQUEST_PULLREQUESTID');
+        if (!prId) {
+            console.log("Not running in a PR context. Skipping PR comment.");
+            return;
+        }
+
+        const collectionUri = tl.getVariable('SYSTEM_COLLECTIONURI') || '';
+        const repoUri = tl.getVariable('BUILD_REPOSITORY_URI') || '';
+        const repoId = repoUri.split('/').pop();
+        const token = tl.getEndpointAuthorizationParameter('SystemVssConnection', 'AccessToken', false);
+        const projectName = tl.getVariable('SYSTEM_TEAMPROJECT') || ''; 
+
+        if (!collectionUri || !repoId || !token) {
+            console.error("Missing required environment variables. Cannot proceed with PR comment.");
+            return;
+        }
+
+        console.log(`Posting PR Comment on PR#${prId} in repo ${repoId}`);
+
+        const apiUrl = `${collectionUri}${projectName}/_apis/git/repositories/${repoId}/pullRequests/${prId}/threads?api-version=6.0`;
+        const commentPayload = {
+            comments: [{ content: prComment, commentType: 1 }]
+        };
+
+        const response = await axios.post(apiUrl, commentPayload, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        console.log(`Successfully posted PR comment: ${response.status} ${response.statusText}`);
+    } catch (error) {
+        console.error("Failed to post PR comment:", error);
+    }
+  }
+
   async function run(): Promise<void> {
     try {
         
@@ -40,7 +79,7 @@ import axios from 'axios';
         const MobbProjectName: string = tl.getInput('MobbProjectName', false)|| ''; 
         let repoFolderLocation: string = tl.getInput('repoFolderLocation', false)|| ''; 
         const autopr: boolean = tl.getBoolInput('autopr', false) || false; 
-
+        let commitdirectly: boolean = tl.getBoolInput('commitdirectly', false) || false;
         //env vars
         let finalBranchname: string;
         let finalRepoURI: string;
@@ -55,7 +94,7 @@ import axios from 'axios';
         console.debug('INPUT: BranchName is: '+BranchName);
         console.debug('INPUT: MobbProjectName is: '+MobbProjectName);
         console.debug('INPUT: repoFolderLocation is: '+repoFolderLocation);
-        console.debug('INPUT: autopr is: '+autopr);
+        console.debug('INPUT: autopr is: '+repoFolderLocation);
 
         // Log environment variables using Node.js built-in process.env
         //console.debug('Environment variables:');
@@ -92,7 +131,7 @@ import axios from 'axios';
       if (hostname !== 'app.mobb.ai') {
         // Set environment variables for custom Mobb URL
         
-        // Checking if the API_URL is of the format "api-st-HOSTNAME" or "api-HOSTNAME"
+        // Checking if the API_URL is api-st-NAME or api-NAME
         const primaryUrl = `https://api-${hostname}/v1/graphql`;
         const secondaryUrl = `https://api-st-${hostname}/v1/graphql`;
         try {
@@ -164,22 +203,38 @@ import axios from 'axios';
           mobbExecString = mobbExecString + ` --auto-pr`;
         }
 
+        // Ensure commitDirectly is false when autoPR is disabled
+        if (!autopr) {
+          commitdirectly = false;
+        }
+
+        if(commitdirectly){
+          mobbExecString = mobbExecString + ` --commit-directly`;
+          const prId = tl.getVariable('SYSTEM_PULLREQUEST_PULLREQUESTID');
+          if (prId) {
+            console.log(`PR ID found: ${prId}, adding --pr-id to the Mobb command.`);  
+            mobbExecString = mobbExecString + ` --pr-id ${prId}`;
+          }
+        }
+
         console.log(`Mobb Exec String: ${mobbExecString}`);
+        
+        let mobblink = execSync(mobbExecString,{ encoding: 'utf-8' });
+        
+        mobblink = mobblink.trim();
+        mobblink = mobblink.replace(/\x1B\[[0-9;]*m/g, '');  // Remove ANSI characters
 
-        let output = execSync(mobbExecString,{ encoding: 'utf-8' });
-        output = output.trim();
-        console.log('Mobb link output:', output);
+        console.log('Mobb link output:', mobblink);
+        await postCommentOnPullRequest(`[Mobb Autofixer Fix Report Link](${mobblink})`);
 
-        clearAndWriteFile(mobbLinkFilePath, output);
+        clearAndWriteFile(mobbLinkFilePath, mobblink);
         
         tl.addAttachment('mobbLinkReport','mobbLinkReport.txt',mobbLinkFilePath)
-        tl.setVariable('MOBBLINK',output);
-        tl.setTaskVariable('MOBBLINK',output);
+        tl.setVariable('MOBBLINK',mobblink);
+        tl.setTaskVariable('MOBBLINK',mobblink);
         tl.uploadArtifact('mobblink',mobbLinkFilePath,'mobbLinkReport');
         tl.setResult(tl.TaskResult.Succeeded, 'Task completed successfully.');
         
-
-
     } catch (err) {
         tl.setResult(tl.TaskResult.Failed, (err as Error).message);
     }

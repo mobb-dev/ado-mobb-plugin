@@ -4,20 +4,17 @@
     "name": "MobbAutofixer",
     "friendlyName": "Mobb Autofixer",
     "description": "Runs Mobb SAST Autofixer",
-    "helpMarkDown": "Consumes SAST report to generate autofixes. For more information, see the [documentation](https://docs.mobb.ai/mobb-user-docs/ci-cd-integrations/azure-devops).",
+    "helpMarkDown": "Consumes SAST report to generate autofixes. For more information, see the documentation: https://docs.mobb.ai/mobb-user-docs/ci-cd-integrations/azure-devops",
     "category": "Utility",
     "author": "Antony",
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 59
+        "Patch": 199
     },
     "instanceNameFormat": "Run Mobb Autofixer Task",
     "execution": {
         "Node16": {
-            "target": "task.js"
-        },
-        "Node20_1": {
             "target": "task.js"
         }
     },
@@ -77,6 +74,15 @@
             "defaultValue": false,
             "required": false,
             "helpMarkDown": "<b>Specify whether Automatic Pull Request is enabled.</p><a href='https://docs.mobb.ai/mobb-user-docs/administration/fix-policy#automatic-pr' target='_blank'>Click here to learn more.</a>"
+        },
+        {
+            "name": "commitdirectly",
+            "type": "boolean",
+            "label": "Commit Directly",
+            "defaultValue": false,
+            "required": false,
+            "helpMarkDown": "<b>Specify whether bugsy will commit directly to the target branch when Automatic PR is enabled (Requires Automatic PR to be enabled).</p><a href='https://docs.mobb.ai/mobb-user-docs/administration/fix-policy#automatic-pr' target='_blank'>Click here to learn more.</a>",
+            "visibleRule": "autopr = true"
         }
     ],
     "outputVariables": []
