@@ -28,7 +28,7 @@ For step-by-step tutorial on how to use this plugin, please visit: https://docs.
 
 ## Latest Changes
 
-### Version 0.1.206 - May 13, 2025
+### Version 0.1.207 - May 13, 2025
 
 - Change default behavior to not include **-p .** in default runs unless specified by user in the **Repo Sub Folder Location** field. This allows Bugsy to fetch the source code files directly from the repository to assist with obtaining the **Dev Owner** info. 
 

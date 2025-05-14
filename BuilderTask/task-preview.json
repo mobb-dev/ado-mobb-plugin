@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 206
+        "Patch": 207
     },
     "instanceNameFormat": "Run Mobb Autofixer Task",
     "execution": {

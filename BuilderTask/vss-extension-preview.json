@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "mobb-autofixer-task-preview",
     "name": "Mobb Autofixer Preview",
-    "version": "0.1.206",
+    "version": "0.1.207",
     "publisher": "AntonyChiu",
     "scopes": [
         "vso.code",
