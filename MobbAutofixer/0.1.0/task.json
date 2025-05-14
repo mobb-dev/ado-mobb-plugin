@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 1,
-        "Patch": 201
+        "Patch": 206
     },
     "instanceNameFormat": "Run Mobb Autofixer Task",
     "execution": {
@@ -63,7 +63,6 @@
             "name": "repoFolderLocation",
             "type": "string",
             "label": "Repo Sub Folder Location",
-            "defaultValue": ".",
             "required": false,
             "helpMarkDown": "<b>Specify the Repository folder location</b><p>If this is not specified, the current working directory SYSTEM_DEFAULTWORKINGDIRECTORY will be used.</p>"
         },

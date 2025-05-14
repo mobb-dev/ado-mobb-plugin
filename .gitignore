@@ -8,3 +8,4 @@ test/
 WF-examples/
 codeql_report.json
 .env
+*.log

@@ -1,14 +1,14 @@
 {
     "manifestVersion": 1,
-    "id": "mobb-autofixer-task",
-    "name": "Mobb Autofixer",
-    "version": "0.1.201",
-    "publisher": "Mobb",
+    "id": "mobb-autofixer-task-preview",
+    "name": "Mobb Autofixer Preview",
+    "version": "0.1.205",
+    "publisher": "AntonyChiu",
     "scopes": [
         "vso.code",
         "vso.build"
     ],
-    "public": true,
+    "public": false,
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
@@ -82,14 +82,14 @@
         },
         {
             "id": "service-endpoint",
-            "description": "Service Endpoint type for all Mobb connections",
+            "description": "Service Endpoint type for all Mobb connections - preview",
             "type": "ms.vss-endpoint.service-endpoint-type",
             "targets": [
                 "ms.vss-endpoint.endpoint-types"
             ],
             "properties": {
-                "name": "MobbServiceEndpoint",
-                "displayName": "Mobb Autofixer Endpoint",
+                "name": "MobbServiceEndpoint-Preview",
+                "displayName": "Mobb Autofixer Endpoint Preview",
                 "url": {
                     "displayName": "Server URL",
                     "value": "https://app.mobb.ai",
@@ -135,7 +135,7 @@
                 "name": "Mobb",
                 "uri": "MobbAutofixer/0.1.0/dist/mobb.html",
                 "supportsTasks": [
-                    "d49b6d4a-9db5-465d-9770-e62b734e4a45"
+                    "2f13ed74-0b6b-43ce-94bd-aa4fe6b4c559"
                 ]
             }
         }

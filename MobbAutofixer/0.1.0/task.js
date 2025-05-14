@@ -201,12 +201,11 @@ async function run() {
         }
         finalBranchname = finalBranchname.startsWith("refs/heads/") ? finalBranchname.substring("refs/heads/".length) : finalBranchname;
         console.log(`finalBranchname is: ${finalBranchname}`);
-        // Check if repoFolderLocation is empty, if it is, then just add .
-        if (repoFolderLocation === "") {
-            repoFolderLocation = ".";
-        }
         //Building Mobb execution String
-        let mobbExecString = `npx mobbdev@latest analyze --scan-file ${sastReportFileLocation} --repo ${finalRepoURI} --ref ${finalBranchname} -p ${repoFolderLocation} --api-key ${apiToken} --ci`;
+        let mobbExecString = `npx mobbdev@latest analyze --scan-file ${sastReportFileLocation} --repo ${finalRepoURI} --ref ${finalBranchname} --api-key ${apiToken} --ci`;
+        if (repoFolderLocation) {
+            mobbExecString = mobbExecString + ` -p ${repoFolderLocation}`; // Add the repo folder location to the command
+        }
         if (MobbProjectName) {
             mobbExecString = mobbExecString + ` --mobb-project-name "${MobbProjectName}"`;
         }
